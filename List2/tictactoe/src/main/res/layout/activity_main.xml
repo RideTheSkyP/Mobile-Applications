@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -27,7 +28,6 @@
         android:layout_height="wrap_content"
         android:onClick="menu"
         android:text="@string/player"
-        android:visibility="visible"
         app:backgroundTint="#444444"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/computer"
@@ -40,11 +40,8 @@
         android:id="@+id/computer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#6200EE"
         android:onClick="menu"
-        android:padding="5dp"
         android:text="@string/computer"
-        android:visibility="visible"
         app:backgroundTint="@color/purple_500"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -96,6 +93,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.8"/>
+        app:layout_constraintVertical_bias="0.85"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

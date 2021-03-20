@@ -4,18 +4,27 @@ import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageView
+import androidx.core.view.size
 import com.labs.tictactoe.databinding.ActivityMainBinding
+import com.labs.tictactoe.databinding.Board3Binding
+import com.labs.tictactoe.databinding.Board5Binding
 
 class MainActivity : AppCompatActivity()
 {
     private lateinit var binding: ActivityMainBinding
+    private lateinit var bindingBoard3: Board3Binding
+    private lateinit var bindingBoard5: Board5Binding
     var bot : Boolean = true
     var field : Boolean = true
+    var currentTurn : Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
+        bindingBoard3 = Board3Binding.inflate(layoutInflater)
+        bindingBoard5 = Board5Binding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
     }
@@ -24,42 +33,25 @@ class MainActivity : AppCompatActivity()
     {
         when(view.id)
         {
-            binding.player.id -> {bot=false; menuChangeColor(view, true, true);}
-            binding.computer.id -> {bot=true; menuChangeColor(view, true, false);}
-            binding.field3.id -> {field=true; menuChangeColor(view, false, true);}
-            binding.field5.id -> {field=false; menuChangeColor(view, false, false);}
-            binding.start.id -> {menuChangeState(view, false); }
+            binding.player.id -> {bot=false; menuChangeButtonColor(view, true, true);}
+            binding.computer.id -> {bot=true; menuChangeButtonColor(view, true, false);}
+            binding.field3.id -> {field=true; menuChangeButtonColor(view, false, true);}
+            binding.field5.id -> {field=false; menuChangeButtonColor(view, false, false);}
+            binding.start.id -> {menuChangeState(true);}
         }
     }
 
-    fun menuChangeState(view: View, visibility : Boolean)
+    fun menuChangeState(state : Boolean)
     {
-        var type = View.INVISIBLE
-        if(visibility)
-        {
-            type = View.INVISIBLE
-        }
-        binding.player.visibility = type
-        binding.computer.visibility = type
-        binding.choseop.visibility = type
-        binding.field5.visibility = type
-        binding.field3.visibility = type
+//        val setView : View = if (state) bindingBoard3.root else binding.root
+        val setView : View = if (state) bindingBoard5.root else binding.root
+        setContentView(setView)
     }
 
-    private fun menuChangeColor(view: View, buttonType : Boolean, button : Boolean)
+    private fun menuChangeButtonColor(view: View, buttonType : Boolean, button : Boolean)
     {
-        val color : Int
-        val opColor : Int
-        if(button)
-        {
-            color = Color.parseColor("#6200EE")
-            opColor = Color.DKGRAY
-        }
-        else
-        {
-            color = Color.DKGRAY
-            opColor = Color.parseColor("#6200EE")
-        }
+        val color : Int = if (button) Color.parseColor("#6200EE") else Color.DKGRAY
+        val opColor : Int = if (button) Color.DKGRAY else Color.parseColor("#6200EE")
 
         if(buttonType)
         {
@@ -68,25 +60,22 @@ class MainActivity : AppCompatActivity()
         }
         else
         {
-            binding.computer.setBackgroundColor(color)
-            binding.player.setBackgroundColor(opColor)
+            binding.field3.setBackgroundColor(color)
+            binding.field5.setBackgroundColor(opColor)
         }
     }
 
-
-    fun createBoard(view: View, field : Boolean): Array<IntArray>
+    fun turnClicked(view: View)
     {
-        val size = if (field) 3 else 5
-        return Array(size){IntArray(size)}
+        val imgView: ImageView = view as ImageView
+        val img = if (currentTurn) R.drawable.x else R.drawable.o
+        imgView.setImageResource(img)
+        imgView.isEnabled = false
+        currentTurn = !currentTurn
     }
 
-    fun startGame(view: View, player : Boolean, field: Boolean)
+    fun checkWin(field : ImageView)
     {
-        var board = createBoard(view, field)
-    }
-
-    fun playerClicked(view: View)
-    {
-
+        menuChangeState(false)
     }
 }
