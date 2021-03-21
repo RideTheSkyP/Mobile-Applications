@@ -7,6 +7,16 @@
     android:background="#FFFCF3"
     tools:context=".Board3">
 
+    <Button
+        android:id="@+id/returnToMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:text="@string/returnToMenu"
+        android:textSize="24sp"
+        android:onClick="returnToMenu"
+        android:drawableLeft="@drawable/back"/>
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -51,7 +61,7 @@
             android:layout_marginRight="106dp" />
 
         <ImageView
-            android:id="@+id/f1"
+            android:id="@+id/f0"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_gravity="top|start"
@@ -62,7 +72,7 @@
             android:onClick="turnClicked"/>
 
         <ImageView
-            android:id="@+id/f2"
+            android:id="@+id/f1"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_gravity="center_horizontal|top"
@@ -71,7 +81,7 @@
             android:onClick="turnClicked"/>
 
         <ImageView
-            android:id="@+id/f3"
+            android:id="@+id/f2"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_gravity="center_horizontal|end|top"
@@ -82,7 +92,7 @@
             android:onClick="turnClicked"/>
 
         <ImageView
-            android:id="@+id/f4"
+            android:id="@+id/f3"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_gravity="center_vertical|start"
@@ -92,7 +102,7 @@
             android:onClick="turnClicked"/>
 
         <ImageView
-            android:id="@+id/f5"
+            android:id="@+id/f4"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_gravity="center"
@@ -100,7 +110,7 @@
             android:onClick="turnClicked"/>
 
         <ImageView
-            android:id="@+id/f6"
+            android:id="@+id/f5"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_gravity="center_horizontal|end|center_vertical"
@@ -110,7 +120,7 @@
             android:onClick="turnClicked"/>
 
         <ImageView
-            android:id="@+id/f7"
+            android:id="@+id/f6"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_gravity="bottom|start"
@@ -121,7 +131,7 @@
             android:onClick="turnClicked"/>
 
         <ImageView
-            android:id="@+id/f8"
+            android:id="@+id/f7"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_gravity="center_horizontal|bottom"
@@ -130,7 +140,7 @@
             android:onClick="turnClicked"/>
 
         <ImageView
-            android:id="@+id/f9"
+            android:id="@+id/f8"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_gravity="center_horizontal|end|bottom"
