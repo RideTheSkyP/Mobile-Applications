@@ -15,7 +15,8 @@
         android:text="@string/returnToMenu"
         android:textSize="24sp"
         android:onClick="returnToMenu"
-        android:drawableLeft="@drawable/back"/>
+        android:drawableLeft="@drawable/back"
+        android:drawableStart="@drawable/back" />
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -103,7 +104,7 @@
             android:layout_marginLeft="120dp" />
 
         <ImageView
-            android:id="@+id/f0"
+            android:id="@+id/f00"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_gravity="top|start"
@@ -112,7 +113,7 @@
             android:onClick="turnClicked"/>
 
         <ImageView
-            android:id="@+id/f1"
+            android:id="@+id/f01"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_gravity="center_horizontal|top"
@@ -123,7 +124,7 @@
             android:layout_marginRight="75dp" />
 
         <ImageView
-            android:id="@+id/f2"
+            android:id="@+id/f02"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_gravity="center_horizontal|top"
@@ -132,7 +133,7 @@
             android:onClick="turnClicked"/>
 
         <ImageView
-            android:id="@+id/f3"
+            android:id="@+id/f03"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_gravity="center_horizontal|top"
@@ -143,7 +144,7 @@
             android:layout_marginLeft="75dp" />
 
         <ImageView
-            android:id="@+id/f4"
+            android:id="@+id/f04"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_gravity="center_horizontal|end|top"
@@ -152,7 +153,7 @@
             android:onClick="turnClicked"/>
 
         <ImageView
-            android:id="@+id/f5"
+            android:id="@+id/f05"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_gravity="top|start"
@@ -161,7 +162,7 @@
             android:onClick="turnClicked"/>
 
         <ImageView
-            android:id="@+id/f6"
+            android:id="@+id/f06"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_gravity="center_horizontal|top"
@@ -172,7 +173,7 @@
             android:layout_marginRight="75dp" />
 
         <ImageView
-            android:id="@+id/f7"
+            android:id="@+id/f07"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_gravity="center_horizontal|top"
@@ -181,7 +182,7 @@
             android:onClick="turnClicked"/>
 
         <ImageView
-            android:id="@+id/f8"
+            android:id="@+id/f08"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_gravity="center_horizontal|top"
@@ -192,7 +193,7 @@
             android:layout_marginLeft="75dp" />
 
         <ImageView
-            android:id="@+id/f9"
+            android:id="@+id/f09"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_gravity="center_horizontal|end|top"

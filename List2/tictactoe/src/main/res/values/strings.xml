@@ -1,10 +1,11 @@
 <resources>
     <string name="app_name">TicTacToe</string>
-    <string name="choseop">Please choose your oponent and field</string>
+    <string name="choseopp">Please choose your opponent and field</string>
     <string name="player">Player</string>
     <string name="computer">Computer</string>
     <string name="field3">3x3</string>
     <string name="field5">5x5</string>
     <string name="start_game">Start game</string>
     <string name="returnToMenu">Return</string>
+    <string name="won">%s</string>
 </resources>

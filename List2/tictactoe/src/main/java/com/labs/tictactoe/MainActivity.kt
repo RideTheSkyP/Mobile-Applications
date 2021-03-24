@@ -1,10 +1,10 @@
 package com.labs.tictactoe
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
-import android.view.ViewParent
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -33,7 +33,8 @@ class MainActivity : AppCompatActivity()
         bindingBoard3 = Board3Binding.inflate(layoutInflater)
         bindingBoard5 = Board5Binding.inflate(layoutInflater)
         setContentView(binding.root)
-        if (won.isEmpty()) binding.win.text = "$won won last game!"
+        binding.win.text = "${intent.getStringExtra("won")} last game!"
+        won = ""
     }
 
     fun menu(view: View)
@@ -92,18 +93,25 @@ class MainActivity : AppCompatActivity()
     fun turnClicked(currView: View)
     {
         val imgView: ImageView = currView as ImageView
+        playerTurn(imgView)
+        checkBoard()
+        if (won.isEmpty() && bot) {botTurn()}
+    }
+
+    fun playerTurn(imageView: ImageView)
+    {
         val img = if (currentTurn) R.drawable.x else R.drawable.o
         val points : Int = if (currentTurn) 1 else -1
         val boardSize : Int = if (field) 3 else 5
-        imgView.setImageResource(img)
-        imgView.isEnabled = false
+        imageView.setImageResource(img)
+        imageView.isEnabled = false
         currentTurn = !currentTurn
-        val currentCell = resources.getResourceEntryName(imgView.id).takeLast(1).toInt()
+        val currentCell = resources.getResourceEntryName(imageView.id).takeLast(2).toInt()
         val column = currentCell % boardSize
         val row = currentCell / boardSize
         board[row][column] = points
         checkWin()
-        if (won.isEmpty()) botTurn()
+        checkBoard()
     }
 
     fun botTurn()
@@ -111,34 +119,33 @@ class MainActivity : AppCompatActivity()
         val img = if (currentTurn) R.drawable.x else R.drawable.o
         val boardSize : Int = if (field) 3 else 5
         val points : Int = if (currentTurn) 1 else -1
-        var found = findEmptyImage(-1)
-        var imgBot : ImageView = findViewById(found)
-        if(imgBot.drawable != null)
+        try
         {
-            found = findEmptyImage(checkBoard())
-            imgBot = findViewById(found)
+            val imgBot : ImageView = findEmptyImage()
+            imgBot.setImageResource(img)
+            imgBot.isEnabled = false
+            currentTurn = !currentTurn
+            val currentCell = resources.getResourceEntryName(imgBot.id).takeLast(2).toInt()
+            val column = currentCell % boardSize
+            val row = currentCell / boardSize
+            board[row][column] = points
+            checkWin()
         }
-        imgBot.setImageResource(img)
-        imgBot.isEnabled = false
-        currentTurn = !currentTurn
-        val currentCell = resources.getResourceEntryName(imgBot.id).takeLast(1).toInt()
-        val column = currentCell % boardSize
-        val row = currentCell / boardSize
-        board[row][column] = points
-        checkWin()
+        catch (e: Exception)
+        {
+            checkBoard()
+        }
     }
 
-    fun checkBoard(): Int
+    fun checkBoard()
     {
         var count = 0
-        var cell = 0
         for (i in board.indices)
         {
             for (j in board.indices)
             {
                 if (board[i][j] == 0)
                 {
-                    cell = i + j
                     count ++
                 }
             }
@@ -146,52 +153,34 @@ class MainActivity : AppCompatActivity()
 
         if (count==0)
         {
-            Toast.makeText(this, "Tie!", Toast.LENGTH_SHORT).show()
-            recreate()
-            menuChangeState(false)
-            return 0
-        }
-        else
-        {
-            return cell
+            if (won.isEmpty())
+            {
+                Toast.makeText(this, "Tie!", Toast.LENGTH_SHORT).show()
+                recreate()
+                menuChangeState(false)
+                won = "Tie was"
+                val intent = Intent(this, MainActivity::class.java)
+                intent.putExtra("won", won)
+                startActivity(intent)
+            }
         }
     }
 
-    fun findEmptyImage(findId : Int): Int
+    fun findEmptyImage(): ImageView
     {
-        val x = Random.nextInt(if (field) 3 else 5)
-        val y = Random.nextInt(if (field) 3 else 5)
-        val currId = if (findId != -1) findId else x * y + x + y
-        var found = R.id.f0
-        when (currId)
+        var currId = Random.nextInt(if (field) 9 else 25)
+        var insertId = if (currId.toString().length == 1) "f0$currId" else "f$currId"
+        var id: Int = resources.getIdentifier(insertId, "id", packageName)
+        var imgView : ImageView = findViewById(id)
+
+        while (imgView.drawable != null)
         {
-            0 -> found = R.id.f0
-            1 -> found = R.id.f1
-            2 -> found = R.id.f2
-            3 -> found = R.id.f3
-            4 -> found = R.id.f4
-            5 -> found = R.id.f5
-            6 -> found = R.id.f6
-            7 -> found = R.id.f7
-            8 -> found = R.id.f8
-            9 -> found = R.id.f9
-            10 -> found = R.id.f10
-            11 -> found = R.id.f11
-            12 -> found = R.id.f12
-            13 -> found = R.id.f13
-            14 -> found = R.id.f14
-            15 -> found = R.id.f15
-            16 -> found = R.id.f16
-            17 -> found = R.id.f17
-            18 -> found = R.id.f18
-            19 -> found = R.id.f19
-            20 -> found = R.id.f20
-            21 -> found = R.id.f21
-            22 -> found = R.id.f22
-            23 -> found = R.id.f23
-            24 -> found = R.id.f24
+            currId = Random.nextInt(if (field) 9 else 25)
+            insertId = if (currId.toString().length == 1) "f0$currId" else "f$currId"
+            id = resources.getIdentifier(insertId, "id", packageName)
+            imgView = findViewById(id)
         }
-        return found
+        return findViewById(id)
     }
 
     fun checkWin()
@@ -240,9 +229,12 @@ class MainActivity : AppCompatActivity()
 
     fun endGame()
     {
-        won = if (currentTurn) "O" else "X"
-        Toast.makeText(this, "$won won!", Toast.LENGTH_SHORT).show()
+        won = if (currentTurn) "O won" else "X won"
+        Toast.makeText(this, "$won!", Toast.LENGTH_SHORT).show()
         recreate()
         menuChangeState(false)
+        val intent = Intent(this, MainActivity::class.java)
+        intent.putExtra("won", won)
+        startActivity(intent)
     }
 }

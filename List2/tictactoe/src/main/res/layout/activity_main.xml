@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="serif"
-        android:text=""
+        android:text="@string/won"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -23,11 +23,11 @@
         app:layout_constraintVertical_bias="0.2"/>
 
     <TextView
-        android:id="@+id/choseop"
+        android:id="@+id/choseopp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="serif"
-        android:text="@string/choseop"
+        android:text="@string/choseopp"
         android:textColor="@color/black"
         android:textSize="18sp"
         android:textStyle="bold"
