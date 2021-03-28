@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">ToDo</string>
+    <string name="title">To Do App</string>
+    <string name="addtaskbutton">AddTaskButton</string>
+</resources>
