@@ -1,5 +1,6 @@
 package com.lab3.todo
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -17,7 +18,6 @@ import com.lab3.todo.databinding.InfoPickerBinding
 class MainActivity : AppCompatActivity(), ItemClickListener
 {
     private lateinit var binding: ActivityMainBinding
-    private lateinit var bindingInfo: InfoPickerBinding
     var adapter: MyRecyclerViewAdapter? = null
     val recycleList: ArrayList<String> = ArrayList()
 
@@ -25,7 +25,6 @@ class MainActivity : AppCompatActivity(), ItemClickListener
     {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
-        bindingInfo = InfoPickerBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         recycleList.add("Item0")
@@ -56,11 +55,15 @@ class MainActivity : AppCompatActivity(), ItemClickListener
                 "Long click " + adapter!!.getItem(position) + " on row number " + position,
                 Toast.LENGTH_SHORT
         ).show()
+        recycleList.removeAt(position)
+        adapter?.notifyItemRemoved(position)
     }
 
     fun onTaskAddButton(view: View)
     {
-        setContentView(bindingInfo.root)
+        val myIntent = Intent(this, InfoPicker::class.java)
+        startActivity(myIntent)
+//        setContentView(bindingInfo.root)
 //        val length = adapter?.itemCount ?: 0
 //        recycleList.add(length, "Item")
 //        adapter?.notifyItemInserted(length)

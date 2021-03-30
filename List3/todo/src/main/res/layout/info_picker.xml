@@ -2,9 +2,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:windowSoftInputMode="stateVisible|adjustResize">
+    android:windowSoftInputMode="stateVisible|adjustResize"
+    tools:context=".InfoPicker">
 
     <TextView
         android:id="@+id/pickerTitle"
@@ -44,7 +46,7 @@
 
     <EditText
         android:id="@+id/dateInput"
-        android:text="@string/dateInputText"
+        android:hint="@string/dateInputText"
         android:fontFamily="casual"
         android:textSize="12sp"
         android:inputType="date"
@@ -60,7 +62,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dateDescription"
-        app:layout_constraintBottom_toTopOf="@+id/eventDescription"/>
+        app:layout_constraintBottom_toTopOf="@+id/eventTitle"/>
 
     <TextView
         android:id="@+id/eventTitle"
@@ -82,7 +84,7 @@
 
     <EditText
         android:id="@+id/eventTitleInput"
-        android:text="@string/eventTitleText"
+        android:hint="@string/eventTitleText"
         android:fontFamily="casual"
         android:textSize="12sp"
         android:inputType="textPersonName"
@@ -119,7 +121,7 @@
 
     <EditText
         android:id="@+id/eventInput"
-        android:text="@string/eventDescription"
+        android:hint="@string/eventDescription"
         android:fontFamily="casual"
         android:textSize="12sp"
         android:inputType="textPersonName"
@@ -139,24 +141,29 @@
     <ListView
         android:id="@+id/iconsList"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="16dp"
+        android:choiceMode="singleChoice"
+        android:focusable="true"
+        android:listSelector="@android:color/holo_purple"
+        app:layout_constraintBottom_toTopOf="@+id/confirmationButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/eventInput"
-        app:layout_constraintBottom_toTopOf="@+id/confirmationButton"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/eventInput"/>
 
     <Button
         android:id="@+id/confirmationButton"
         android:text="@string/confirm"
         android:fontFamily="serif"
+        android:onClick="addInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:onClick="addNew"
         app:layout_constraintTop_toBottomOf="@+id/iconsList"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

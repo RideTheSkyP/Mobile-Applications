@@ -24,8 +24,8 @@ class MyRecyclerViewAdapter internal constructor(context: Context?, data: List<S
     // binds the data to the TextView in each row
     override fun onBindViewHolder(holder: ViewHolder, position: Int)
     {
-        val animal = mData[position]
-        holder.myTextView.text = animal
+        val data = mData[position]
+        holder.myTextView.text = data
     }
 
     // total number of rows
@@ -73,6 +73,7 @@ class MyRecyclerViewAdapter internal constructor(context: Context?, data: List<S
     {
         mClickListener = itemClickListener
     }
+
     // parent activity will implement this method to respond to click events
     interface ItemClickListener
     {
