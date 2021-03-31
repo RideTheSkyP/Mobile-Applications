@@ -4,11 +4,13 @@
     <string name="addtaskbutton">AddTaskButton</string>
     <string name="confirm">Confirm</string>
     <string name="create_new_event">Create new event</string>
-    <string name="dateDescriptionText">Enter date</string>
+    <string name="dateDescriptionText">Enter date\n(format yyyy-MM-dd HH:mm:ss)</string>
     <string name="dateInputText">Date</string>
     <string name="eventDescriptionText">Add an event description</string>
     <string name="event">Event</string>
     <string name="eventTitleText">Event title</string>
     <string name="eventTitle">Add an event title</string>
     <string name="eventDescription">Event description</string>
+    <string name="enter_priority">Enter priority</string>
+    <string name="priority">Priority</string>
 </resources>

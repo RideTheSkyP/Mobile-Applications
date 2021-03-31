@@ -24,15 +24,15 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/dateDescription"/>
+        app:layout_constraintBottom_toTopOf="@+id/priorityDesc"/>
 
     <TextView
-        android:id="@+id/dateDescription"
-        android:text="@string/dateDescriptionText"
+        android:id="@+id/priorityDesc"
+        android:text="@string/enter_priority"
         android:fontFamily="serif"
         android:textStyle="bold"
         android:textSize="18sp"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
         android:layout_marginStart="32dp"
@@ -42,6 +42,44 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pickerTitle"
+        app:layout_constraintBottom_toTopOf="@+id/priorityInput"/>
+
+    <EditText
+        android:id="@+id/priorityInput"
+        android:hint="@string/priority"
+        android:fontFamily="casual"
+        android:textSize="12sp"
+        android:inputType="date"
+        android:ems="10"
+        android:imeOptions="actionDone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:autofillHints=""
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/priorityDesc"
+        app:layout_constraintBottom_toTopOf="@+id/dateDescription"/>
+
+    <TextView
+        android:id="@+id/dateDescription"
+        android:text="@string/dateDescriptionText"
+        android:fontFamily="serif"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/priorityInput"
         app:layout_constraintBottom_toTopOf="@+id/dateInput"/>
 
     <EditText
@@ -167,5 +205,5 @@
         app:layout_constraintTop_toBottomOf="@+id/iconsList"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
