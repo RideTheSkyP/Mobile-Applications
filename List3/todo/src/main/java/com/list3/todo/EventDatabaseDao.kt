@@ -40,11 +40,11 @@ interface EventDatabaseDao
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insert(vararg events: EventDBCreator)
 
-    @Query("SELECT * FROM Events")
-    fun getAll(): LiveData<List<EventDBCreator>>
+    @get:Query("SELECT * FROM Events")
+    val getAll: LiveData<List<EventDBCreator>>
 
-//    @Query("DELETE FROM Events WHERE ")
-//    suspend fun deleteAll()
+    @Query("DELETE FROM Events")
+    suspend fun deleteAll()
 
 //    @Query("DELETE FROM Events")
 //    suspend fun deleteAll()

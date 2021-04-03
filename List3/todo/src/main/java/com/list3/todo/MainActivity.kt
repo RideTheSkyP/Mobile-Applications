@@ -5,8 +5,10 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,6 +21,9 @@ class MainActivity : AppCompatActivity(), MyRecyclerViewAdapter.ItemClickListene
     private lateinit var binding: ActivityMainBinding
     var adapter: MyRecyclerViewAdapter? = null
     val recycleList: ArrayList<String> = ArrayList()
+
+    private lateinit var moviesViewModel: MoviesViewModel
+    private lateinit var moviesList: List<EventDBCreator>
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
@@ -49,13 +54,19 @@ class MainActivity : AppCompatActivity(), MyRecyclerViewAdapter.ItemClickListene
             applicationContext,
             EventDatabase::class.java, "event_database"
         ).build()
-        val eventDB = db.eventDao()
-        val inf = eventDB.getAll()
-        inf.observe(this, Observer {  })
+//        val eventDB = db.eventDao()
+        moviesViewModel = ViewModelProvider().get(MoviesViewModel::class.java)
+        moviesViewModel.moviesList.observe(this,
+            Observer { movies: List<EventDBCreator> ->
+                moviesList = movies
+            }
+        )
+//        val inf = eventDB.getAll()
+//        inf.observe(this, Observer {  })
 //        var mSections: LiveData<List<EventDBCreator>>
 
 
-        println(inf.value)
+        println(moviesList)
     }
 
     override fun onLongClick(view: View?, position: Int)

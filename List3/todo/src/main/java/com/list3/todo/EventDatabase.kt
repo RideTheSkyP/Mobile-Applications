@@ -52,7 +52,7 @@ abstract class EventDatabase : RoomDatabase()
         @Volatile
         private var INSTANCE: EventDatabase? = null
 
-        fun getDatabase(context: Context, scope: CoroutineScope): EventDatabase
+        fun getDatabase(context: Context): EventDatabase
         {
             // if the INSTANCE is not null, then return it,
             // if it is, then create the database
@@ -67,7 +67,7 @@ abstract class EventDatabase : RoomDatabase()
                     // Migration is not part of this codelab.
                     .fallbackToDestructiveMigration()
                     .allowMainThreadQueries()
-                    .addCallback(EventDatabaseCallback(scope))
+//                    .addCallback(EventDatabaseCallback(scope))
                     .build()
                 INSTANCE = instance
                 // return instance
