@@ -89,23 +89,46 @@
 
     <EditText
         android:id="@+id/dateInput"
+        android:fontFamily="casual"
+        android:clickable="false"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:cursorVisible="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
         android:layout_marginStart="32dp"
         android:layout_marginTop="0dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="8dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:fontFamily="casual"
         android:hint="@string/dateInputText"
         android:imeOptions="actionDone"
         android:inputType="date"
         android:textSize="12sp"
+        app:layout_constraintTop_toBottomOf="@id/dateDescription"
         app:layout_constraintBottom_toTopOf="@id/eventTitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/dateDescription" />
+        android:autofillHints=""/>
+
+<!--    <EditText-->
+<!--        android:id="@+id/dateInput"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="32dp"-->
+<!--        android:layout_marginTop="0dp"-->
+<!--        android:layout_marginEnd="32dp"-->
+<!--        android:layout_marginBottom="8dp"-->
+<!--        android:autofillHints=""-->
+<!--        android:ems="10"-->
+<!--        android:fontFamily="casual"-->
+<!--        android:hint="@string/dateInputText"-->
+<!--        android:imeOptions="actionDone"-->
+<!--        android:inputType="date"-->
+<!--        android:textSize="12sp"-->
+<!--        app:layout_constraintBottom_toTopOf="@id/eventTitle"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/dateDescription" />-->
 
     <TextView
         android:id="@+id/eventTitle"

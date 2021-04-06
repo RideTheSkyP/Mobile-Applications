@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.list3.todo.database.Event
+import kotlinx.android.synthetic.main.fragment_movie_list.*
 
 
 class EventRecyclerAdapter(private val provider: NewEventViewModel, private val myDataset: List<Event>) : RecyclerView.Adapter<EventRecyclerAdapter.EventViewHolder>()
@@ -53,7 +54,6 @@ class EventRecyclerAdapter(private val provider: NewEventViewModel, private val 
                 notifyItemRemoved(position)
                 provider.retrieveMovies()
             }
-
             true
         }
         holder.icon.setImageResource(iconImage)

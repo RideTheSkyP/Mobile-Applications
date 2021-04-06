@@ -1,15 +1,23 @@
 package com.list3.todo
 
+import android.R.attr.maxDate
+import android.R.attr.minDate
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.OnFocusChangeListener
 import android.view.ViewGroup
 import android.widget.AdapterView
+import android.widget.DatePicker
 import android.widget.Toast
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.fragment_new_event.*
+import java.util.*
+import kotlin.collections.ArrayList
+
 
 class NewEventFragment : Fragment()
 {
@@ -47,9 +55,39 @@ class NewEventFragment : Fragment()
         }
     }
 
+//    fun EditText.transformIntoDatePicker(context: Context, format: String, maxDate: Date? = null) {
+//        isFocusableInTouchMode = false
+//        isClickable = true
+//        isFocusable = false
+//
+//        val myCalendar = Calendar.getInstance()
+//        val datePickerOnDataSetListener =
+//                DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
+//                    myCalendar.set(Calendar.YEAR, year)
+//                    myCalendar.set(Calendar.MONTH, monthOfYear)
+//                    myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+//                    val sdf = SimpleDateFormat(format, Locale.UK)
+//                    setText(sdf.format(myCalendar.time))
+//                }
+//
+//        setOnClickListener {
+//            DatePickerDialog(
+//                    context, datePickerOnDataSetListener, myCalendar
+//                    .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+//                    myCalendar.get(Calendar.DAY_OF_MONTH)
+//            ).run {
+//                maxDate?.time?.also { datePicker.maxDate = it }
+//                show()
+//            }
+//        }
+//    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?)
     {
         super.onViewCreated(view, savedInstanceState)
+
+        val editTextDatePicker = TextViewDatePicker(context, dateInput)
+        println(editTextDatePicker)
 
         imageArray.add(Icons(R.drawable.work, "Work"))
         imageArray.add(Icons(R.drawable.home, "Home"))
