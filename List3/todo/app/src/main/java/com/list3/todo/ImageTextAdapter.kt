@@ -1,17 +1,17 @@
 package com.list3.todo
 
 import android.app.Activity
+import android.content.Context
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.fragment.app.FragmentActivity
 import java.util.*
 
-class ImageTextAdapter(context: FragmentActivity, layoutResourceId: Int, data: ArrayList<Icons>): ArrayAdapter<Icons?>(context, layoutResourceId, data as List<Icons?>)
+class ImageTextAdapter(context: Context, layoutResourceId: Int, data: ArrayList<Icons>): ArrayAdapter<Icons?>(context, layoutResourceId, data as List<Icons?>)
 {
-    var data: ArrayList<Icons> = ArrayList()
+    var data: ArrayList<Icons> = ArrayList<Icons>()
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View
     {
         var row = convertView
