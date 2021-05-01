@@ -2,11 +2,12 @@ package com.example.gallery
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.app.ListFragment
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
+import androidx.fragment.app.ListFragment
 
 class PicListFragment : ListFragment()
 {
@@ -45,12 +46,12 @@ class PicListFragment : ListFragment()
             val temp = savedInstanceState.getParcelableArrayList<MyPicItem>("items")
             if (temp != null) {
                 pics = temp
-                listAdapter = MyItemAdapter(activity!!.baseContext, temp)
+                listAdapter = MyItemAdapter(requireActivity().baseContext, temp)
             }
         }
     }
 
-    override fun onListItemClick(l: ListView?, v: View?, position: Int, id: Long)
+    override fun onListItemClick(l: ListView, v: View, position: Int, id: Long)
     {
         super.onListItemClick(l, v, position, id)
     }
@@ -72,7 +73,7 @@ class PicListFragment : ListFragment()
             pics[currentItm].desc = itm.desc
             pics[currentItm].rating = itm.rating
             pics = ArrayList(pics.sortedByDescending { it.rating } )
-            listAdapter = MyItemAdapter(view!!.context, pics)
+            listAdapter = MyItemAdapter(requireView().context, pics)
         }
     }
 

@@ -3,16 +3,17 @@ package com.example.gallery
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import android.util.Log
-import android.view.Menu
 import android.view.MenuItem
-import kotlinx.android.synthetic.main.detailed_pic_fragment.*
-import kotlinx.android.synthetic.main.pic_property_fragment.*
+import android.widget.RatingBar
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 
-class ScndActivity : AppCompatActivity() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+class ScndActivity : AppCompatActivity()
+{
+    override fun onCreate(savedInstanceState: Bundle?)
+    {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.detail_activity)
 
@@ -26,32 +27,32 @@ class ScndActivity : AppCompatActivity() {
                 val itm: MyPicItem = intent.extras.getParcelable("item")
                 val imgParameters = Bundle()
                 imgParameters.putInt("picId", itm.imgId)
-                val fragment = DetailedImgFragment()
+                val fragment : Fragment = DetailedImgFragment()
                 fragment.arguments = imgParameters
 
-                val propertiesFragment = ImgPropertiesFragment()
+                val propertiesFragment : Fragment = ImgPropertiesFragment()
                 val propertiesParams = Bundle()
                 propertiesParams.putParcelable("item", itm)
                 propertiesFragment.arguments = propertiesParams
                 transaction.add(R.id.detailLayout, fragment, "f1")
                 transaction.add(R.id.detailLayout, propertiesFragment, "f2")
-
                 transaction.commit()
             }
         }
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean
+    {
         onBackPressed()
         return super.onOptionsItemSelected(item)
     }
 
-    override fun onBackPressed() {
-        Log.d("infod", "Wsteczny dziala")
-        val desc = description.text.toString()
-        val rate = detailRatingBar.rating
-        val id = detailedImage.id
-        var f = MyPicItem(id, desc, rate)
+    override fun onBackPressed()
+    {
+        val desc = findViewById<TextView>(R.id.description).text.toString()
+        val rate = findViewById<RatingBar>(R.id.detailRatingBar).rating
+        val id = R.id.detailedImage
+        val f = MyPicItem(id, desc, rate)
         val myIntent = Intent()
 
         myIntent.putExtra("after", f)
