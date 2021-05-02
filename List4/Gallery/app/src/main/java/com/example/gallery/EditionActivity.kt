@@ -8,9 +8,11 @@ import android.widget.RatingBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import org.json.JSONArray
+import java.io.File
 
 
-class ScndActivity : AppCompatActivity()
+class EditionActivity : AppCompatActivity()
 {
     override fun onCreate(savedInstanceState: Bundle?)
     {
@@ -24,21 +26,47 @@ class ScndActivity : AppCompatActivity()
             val transaction = manager.beginTransaction()
 
             if (intent.extras != null) {
-                val itm: MyPicItem = intent.extras.getParcelable("item")
+                val item: MyPicItem = intent.extras.getParcelable("item")
                 val imgParameters = Bundle()
-                imgParameters.putInt("picId", itm.imgId)
+                imgParameters.putInt("picId", item.imgId)
                 val fragment : Fragment = DetailedImgFragment()
                 fragment.arguments = imgParameters
 
                 val propertiesFragment : Fragment = ImgPropertiesFragment()
                 val propertiesParams = Bundle()
-                propertiesParams.putParcelable("item", itm)
+                propertiesParams.putParcelable("item", item)
                 propertiesFragment.arguments = propertiesParams
                 transaction.add(R.id.detailLayout, fragment, "f1")
                 transaction.add(R.id.detailLayout, propertiesFragment, "f2")
                 transaction.commit()
             }
         }
+    }
+
+    override fun onResume()
+    {
+        super.onResume()
+    }
+
+    override fun onPause()
+    {
+        super.onPause()
+    }
+
+    override fun onStop()
+    {
+        super.onStop()
+
+    }
+
+    override fun onRestart()
+    {
+        super.onRestart()
+    }
+
+    override fun onDestroy()
+    {
+        super.onDestroy()
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean

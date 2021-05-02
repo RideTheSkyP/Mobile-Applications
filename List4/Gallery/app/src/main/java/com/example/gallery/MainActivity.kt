@@ -3,6 +3,8 @@ package com.example.gallery
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import org.json.JSONArray
+import java.io.File
 
 
 class MainActivity : AppCompatActivity()
@@ -19,5 +21,15 @@ class MainActivity : AppCompatActivity()
             transaction.add(R.id.mainLayout, fragment)
             transaction.commit()
         }
+    }
+
+    override fun onStop()
+    {
+        super.onStop()
+        val jsonArray = JSONArray()
+//        imageList.forEach { jsonArray.put(it.toJson()) }
+//        File(this.filesDir, "items.json").printWriter().use {
+//            it.println(jsonArray.toString())
+//        }
     }
 }

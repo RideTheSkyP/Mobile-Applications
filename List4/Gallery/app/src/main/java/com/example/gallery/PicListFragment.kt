@@ -2,32 +2,34 @@ package com.example.gallery
 
 import android.content.Intent
 import android.os.Bundle
-
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ListView
 import androidx.fragment.app.ListFragment
+import org.json.JSONArray
+import org.json.JSONObject
+import java.io.File
 
 class PicListFragment : ListFragment()
 {
-    var pics = ArrayList<MyPicItem>()
-    var currentItm = -1
+    var imageList = ArrayList<MyPicItem>()
+    var currentItem = -1
 
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View?
     {
+        loadImages()
         return inflater.inflate(R.layout.pic_list_fragment, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?)
     {
         super.onViewCreated(view, savedInstanceState)
-        picsInit()
-        listAdapter = MyItemAdapter(view.context, pics)
+        imgInit()
+        listAdapter = MyItemAdapter(view.context, imageList)
         listView.setOnItemClickListener { _, _, position, _ ->
-            currentItm = position
+            currentItem = position
             showDetails(position)
         }
     }
@@ -35,7 +37,7 @@ class PicListFragment : ListFragment()
     override fun onSaveInstanceState(outState: Bundle)
     {
         super.onSaveInstanceState(outState)
-        outState.putParcelableArrayList("items", pics)
+        outState.putParcelableArrayList("items", imageList)
     }
 
     override fun onViewStateRestored(savedInstanceState: Bundle?)
@@ -45,21 +47,39 @@ class PicListFragment : ListFragment()
         {
             val temp = savedInstanceState.getParcelableArrayList<MyPicItem>("items")
             if (temp != null) {
-                pics = temp
+                imageList = temp
                 listAdapter = MyItemAdapter(requireActivity().baseContext, temp)
             }
         }
     }
 
-    override fun onListItemClick(l: ListView, v: View, position: Int, id: Long)
+    fun loadImages()
     {
-        super.onListItemClick(l, v, position, id)
+        val file = File(context?.filesDir, "items.json")
+        if (file.exists()) {
+            val itemsJson = JSONArray(file.readText())
+            for (i in 0 until itemsJson.length())
+            {
+                imageList.add(MyPicItem(itemsJson[i] as JSONObject))
+            }
+        }
+        else
+        {
+            val string = context?.assets?.open("items.json")?.bufferedReader().use{
+                it?.readText()
+            }
+            val itemsJson = JSONArray(string)
+            for (i in 0 until itemsJson.length()) {
+                imageList.add(MyPicItem(itemsJson[i] as JSONObject))
+            }
+        }
+        println("Loaded")
     }
 
     fun showDetails(idx: Int) : Boolean
     {
-        val myIntent = Intent(activity, ScndActivity::class.java)
-        myIntent.putExtra("item", pics[idx])
+        val myIntent = Intent(activity, EditionActivity::class.java)
+        myIntent.putExtra("item", imageList[idx])
         startActivityForResult(myIntent, 123)
         return true
     }
@@ -69,22 +89,32 @@ class PicListFragment : ListFragment()
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 123)
         {
-            val itm: MyPicItem = data!!.getParcelableExtra("after")
-            pics[currentItm].desc = itm.desc
-            pics[currentItm].rating = itm.rating
-            pics = ArrayList(pics.sortedByDescending { it.rating } )
-            listAdapter = MyItemAdapter(requireView().context, pics)
+            val item: MyPicItem = data!!.getParcelableExtra("after")
+            imageList[currentItem].desc = item.desc
+            imageList[currentItem].rating = item.rating
+            imageList = ArrayList(imageList.sortedByDescending { it.rating } )
+            listAdapter = MyItemAdapter(requireView().context, imageList)
         }
     }
 
-    fun picsInit()
+    fun imgInit()
     {
-        pics.addAll(listOf(
+        imageList.addAll(listOf(
             MyPicItem(R.drawable.img, getString(R.string.firstDescription), 0f),
             MyPicItem(R.drawable.img1, getString(R.string.firstDescription), 0f),
             MyPicItem(R.drawable.img2, getString(R.string.firstDescription), 0f),
             MyPicItem(R.drawable.img3, getString(R.string.firstDescription), 0f),
             MyPicItem(R.drawable.img4, getString(R.string.firstDescription), 0f)
         ))
+    }
+
+    override fun onStop()
+    {
+        super.onStop()
+        val jsonArray = JSONArray()
+        imageList.forEach { jsonArray.put(it.toJson()) }
+        File(context?.filesDir, "items.json").printWriter().use {
+            it.println(jsonArray.toString())
+        }
     }
 }
