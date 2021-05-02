@@ -17,19 +17,18 @@
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="8dp"
         android:focusable="true"
-        style="@style/Widget.AppCompat.RatingBar.Indicator"/>
+        android:progressTint="@color/ratingBar"/>
 
     <TextView
         android:id="@+id/description"
-        android:layout_width="242dp"
-        android:layout_height="36dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:freezesText="true"
         android:layout_marginTop="8dp"
         app:layout_constraintTop_toBottomOf="@+id/detailRatingBar"
         android:layout_marginBottom="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.0"
         android:layout_marginStart="8dp"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginEnd="8dp"
