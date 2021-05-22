@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Pong</string>
+    <string name="resumeMessage">Do you want to resume your last game?</string>
+    <string name="resumeYes">Yes</string>
+    <string name="resumeNo">No</string>
+    <string name="resume">Starting in %1$s</string>
+    <string name="scores">%1$d | %2$d</string>
+</resources>
